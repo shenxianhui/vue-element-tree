@@ -1,6 +1,6 @@
 {
   "name": "vue-element-tree",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "private": false,
   "author": "Shen Xianhui",
   "main": "dist/vue-element-tree.umd.min.js",

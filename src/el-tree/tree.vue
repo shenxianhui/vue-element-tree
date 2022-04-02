@@ -355,7 +355,9 @@ export default {
         // setData is required for draggable to work in FireFox
         // the content has to be '' so dragging a node out of the tree won't open a new tab in FireFox
         event.dataTransfer.setData('text/plain', '');
-      } catch (e) {}
+      } catch (e) {
+        console.log(e);
+      }
       dragState.draggingNode = treeNode;
       this.$emit('node-drag-start', treeNode.node, event);
     });
@@ -498,7 +500,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-@import '../theme-chalk/tree.scss';
-</style>

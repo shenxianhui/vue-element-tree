@@ -1,8 +1,22 @@
-import { addClass, removeClass } from '../utils/dom';
+'use strict';
 
-class Transition {
-  beforeEnter(el) {
-    addClass(el, 'collapse-transition');
+exports.__esModule = true;
+
+var _dom = require('../utils/dom');
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+var Transition = (function() {
+  function Transition() {
+    _classCallCheck(this, Transition);
+  }
+
+  Transition.prototype.beforeEnter = function beforeEnter(el) {
+    (0, _dom.addClass)(el, 'collapse-transition');
     if (!el.dataset) el.dataset = {};
 
     el.dataset.oldPaddingTop = el.style.paddingTop;
@@ -11,9 +25,9 @@ class Transition {
     el.style.height = '0';
     el.style.paddingTop = 0;
     el.style.paddingBottom = 0;
-  }
+  };
 
-  enter(el) {
+  Transition.prototype.enter = function enter(el) {
     el.dataset.oldOverflow = el.style.overflow;
     if (el.scrollHeight !== 0) {
       el.style.height = el.scrollHeight + 'px';
@@ -26,16 +40,16 @@ class Transition {
     }
 
     el.style.overflow = 'hidden';
-  }
+  };
 
-  afterEnter(el) {
+  Transition.prototype.afterEnter = function afterEnter(el) {
     // for safari: remove class then reset height is necessary
-    removeClass(el, 'collapse-transition');
+    (0, _dom.removeClass)(el, 'collapse-transition');
     el.style.height = '';
     el.style.overflow = el.dataset.oldOverflow;
-  }
+  };
 
-  beforeLeave(el) {
+  Transition.prototype.beforeLeave = function beforeLeave(el) {
     if (!el.dataset) el.dataset = {};
     el.dataset.oldPaddingTop = el.style.paddingTop;
     el.dataset.oldPaddingBottom = el.style.paddingBottom;
@@ -43,32 +57,36 @@ class Transition {
 
     el.style.height = el.scrollHeight + 'px';
     el.style.overflow = 'hidden';
-  }
+  };
 
-  leave(el) {
+  Transition.prototype.leave = function leave(el) {
     if (el.scrollHeight !== 0) {
       // for safari: add class after set height, or it will jump to zero height suddenly, weired
-      addClass(el, 'collapse-transition');
+      (0, _dom.addClass)(el, 'collapse-transition');
       el.style.height = 0;
       el.style.paddingTop = 0;
       el.style.paddingBottom = 0;
     }
-  }
+  };
 
-  afterLeave(el) {
-    removeClass(el, 'collapse-transition');
+  Transition.prototype.afterLeave = function afterLeave(el) {
+    (0, _dom.removeClass)(el, 'collapse-transition');
     el.style.height = '';
     el.style.overflow = el.dataset.oldOverflow;
     el.style.paddingTop = el.dataset.oldPaddingTop;
     el.style.paddingBottom = el.dataset.oldPaddingBottom;
-  }
-}
+  };
 
-export default {
+  return Transition;
+})();
+
+exports.default = {
   name: 'ElCollapseTransition',
   functional: true,
-  render(h, { children }) {
-    const data = {
+  render: function render(h, _ref) {
+    var children = _ref.children;
+
+    var data = {
       on: new Transition()
     };
 
