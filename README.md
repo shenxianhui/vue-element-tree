@@ -10,13 +10,12 @@ vue-element-tree 是从 element-ui 拆出来的一款独立的树形图组件
 npm i vue-element-tree -S
 ```
 
-## 使用
+## 引入
 
 在 main.js 中写入以下内容：
 
 ```
-import Vue from 'vue';
-import App from './App.vue';
+import ElTree from 'vue-element-tree';
 import 'vue-element-tree/dist/vue-element-tree.css';
 ```
 
