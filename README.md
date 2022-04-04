@@ -12,7 +12,7 @@ npm i vue-element-tree -S
 
 ## 引入
 
-在 main.js 中写入以下内容：
+在组件中写入以下内容：
 
 ```
 import ElTree from 'vue-element-tree';
